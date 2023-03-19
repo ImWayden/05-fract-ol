@@ -6,7 +6,7 @@
 /*   By: wayden <wayden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:10:23 by wayden            #+#    #+#             */
-/*   Updated: 2023/03/19 00:08:15 by wayden           ###   ########.fr       */
+/*   Updated: 2023/03/19 10:31:56 by wayden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int update_screen(void *param)
     return(0);
 }
 
-static int	destroy_app(t_mlx *mlx)
+int	destroy_app(t_mlx *mlx)
 {
     mlx_destroy_image(mlx->mlx_ptr, get_img(1)->img);
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);

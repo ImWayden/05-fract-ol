@@ -6,7 +6,7 @@
 /*   By: wayden <wayden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 22:48:04 by wayden            #+#    #+#             */
-/*   Updated: 2023/03/19 00:05:44 by wayden           ###   ########.fr       */
+/*   Updated: 2023/03/19 10:55:39 by wayden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ static int print_e_manual(int i)
 {
     if(i == 0)
     { 
-        ft_printf("Usage : ./fractol [Julia] [C Real] [C Imag]\n");
-        ft_printf("   or : ./fractol [Mandelbrot]\n");
-        ft_printf("   or : ./fractol [Burning_ship]\n");
+        ft_printf("Usage : ./fractol [Julia] [C Real] [C Imag] [iter_max]\n");
+        ft_printf("   or : ./fractol [Mandelbrot] [iter_max]\n");
+        ft_printf("   or : ./fractol [Burning_ship] [iter_max]\n");
         ft_printf("--command : to get a list of keybind\n");
     }
     if(i == 1)
@@ -36,6 +36,7 @@ static int print_e_manual(int i)
         printf("      o      : don't press if epileptic\n\n\n"); 
         
     }
+    destroy_app(get_mlx(1));
     return (0);
 }
 
@@ -52,14 +53,18 @@ static int verify_argument(int argc,char **argv)
         if(argc >= 3)
             get_complex(1)->r = atof(argv[2]);
         if(argc >= 4)
-            get_complex(1)->i = atof(argv[3]);   
+            get_complex(1)->i = atof(argv[3]);
+        if(argc >= 5)
+            dir->iter_max = atof(argv[4]);
     }    
     if(!ft_strncmp(argv[1],"Mandelbrot",20))
         dir->fractal = 2;
     if(!ft_strncmp(argv[1],"Burning_ship",20))
         dir->fractal = 3;
+    if(dir->fractal > 1 && argc >= 3)
+        dir->iter_max = atof(argv[2]);
     if(!ft_strncmp(argv[1],"--command",20))
-        return(print_e_manual(1),0);
+        return(print_e_manual(1));
     return(1);
 }
 

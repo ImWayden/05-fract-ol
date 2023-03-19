@@ -6,7 +6,7 @@
 /*   By: wayden <wayden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:27:34 by wayden            #+#    #+#             */
-/*   Updated: 2023/03/18 23:41:00 by wayden           ###   ########.fr       */
+/*   Updated: 2023/03/19 10:32:06 by wayden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,5 +139,6 @@ void reset(void);
 void zoom(void);
 
 int update_screen(void *param);
+int	destroy_app(t_mlx *mlx);
 
 #endif

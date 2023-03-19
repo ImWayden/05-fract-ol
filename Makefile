@@ -6,12 +6,11 @@
 #    By: wayden <wayden@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/14 12:12:31 by wayden            #+#    #+#              #
-#    Updated: 2023/03/19 00:09:06 by wayden           ###   ########.fr        #
+#    Updated: 2023/03/19 11:03:01 by wayden           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
-
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3 
@@ -39,6 +38,11 @@ $(LIBFT_SRC):
 
 clean:
 	rm -rf ${OBJ}
-fclean:
+	$(MAKE) -C $(LIBFT_DIR) clean
+	
+fclean: clean
 	rm -rf $(NAME)
+	$(MAKE) -C $(LIBFT_DIR) fclean
+	
+re: fclean all
 .PHONY:
