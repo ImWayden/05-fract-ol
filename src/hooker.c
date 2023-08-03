@@ -6,13 +6,13 @@
 /*   By: wayden <wayden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:10:23 by wayden            #+#    #+#             */
-/*   Updated: 2023/08/03 23:30:35 by wayden           ###   ########.fr       */
+/*   Updated: 2023/08/03 23:49:51 by wayden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/fractol.h"
 
-int update_screen(void *param)
+int	update_screen(void *param)
 {
     t_dir *dir;
     int x;
@@ -34,7 +34,7 @@ int update_screen(void *param)
 
 int	destroy_app(t_mlx *mlx)
 {
-    mlx_destroy_image(mlx->mlx_ptr, get_img(1)->img);
+	mlx_destroy_image(mlx->mlx_ptr, get_img(1)->img);
 	mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	mlx_destroy_display(mlx->mlx_ptr);
 	free(mlx->mlx_ptr);
@@ -42,7 +42,7 @@ int	destroy_app(t_mlx *mlx)
 	return (1);
 }
 
-static int mouse_manager(int keycode, void *param)
+static int	mouse_manager(int keycode, void *param)
 {
    
     (void)param;
@@ -57,7 +57,7 @@ static int mouse_manager(int keycode, void *param)
     return(0);
 }
 
-static int keyboard_manager(int keycode, void *param)
+static int	keyboard_manager(int keycode, void *param)
 {
     (void)param;
     (keycode == XK_Left) && ((get_dir(1)->x -= 0.1*(1/get_dir(1)->zoom)),1);
@@ -85,12 +85,13 @@ static int keyboard_manager(int keycode, void *param)
     return(0);
 }
 
-void init_hook(void)
+void	init_hook(void)
 {
-    t_mlx *mlx;
-    mlx = get_mlx(1);
-    mlx_mouse_hook(mlx->win_ptr, &mouse_manager, NULL);
-    mlx_key_hook(mlx->win_ptr, &keyboard_manager, NULL);
-    mlx_hook(mlx->win_ptr, 17, 0, destroy_app, mlx);
-    mlx_loop_hook(get_mlx(1)->mlx_ptr, &update_screen, NULL);
+	t_mlx	*mlx;
+
+	mlx = get_mlx(1);
+	mlx_mouse_hook(mlx->win_ptr, &mouse_manager, NULL);
+	mlx_key_hook(mlx->win_ptr, &keyboard_manager, NULL);
+	mlx_hook(mlx->win_ptr, 17, 0, destroy_app, mlx);
+	mlx_loop_hook(get_mlx(1)->mlx_ptr, &update_screen, NULL);
 }

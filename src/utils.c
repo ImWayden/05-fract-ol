@@ -6,12 +6,17 @@
 /*   By: wayden <wayden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:11:49 by wayden            #+#    #+#             */
-/*   Updated: 2023/08/03 23:35:12 by wayden           ###   ########.fr       */
+/*   Updated: 2023/08/03 23:50:06 by wayden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/fractol.h"
 
+void	reset(void)
+{
+	g_dr(1)->zoom = 1;
+	update_screen(NULL);
+}
 
 void lock_mouse()
 {
