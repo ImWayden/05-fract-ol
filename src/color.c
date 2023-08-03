@@ -6,7 +6,7 @@
 /*   By: wayden <wayden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:27:15 by wayden            #+#    #+#             */
-/*   Updated: 2023/03/19 10:29:39 by wayden           ###   ########.fr       */
+/*   Updated: 2023/08/03 23:25:19 by wayden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,17 @@ int get_color(double max_iter, double iter)
         return(color_picker(max_iter,iter,pals[dir->palette]));
     else
         return(color_picker(max_iter,iter,pals[dir->palette - 665]));
+}
+
+
+void swap_color(void)
+{
+    t_dir *dir;
+    dir = get_dir(1);
+    if(dir->palette >= 666)
+    {
+        dir->palette++;
+        if(dir->palette == 672)
+            dir->palette = 666;            
+    }
 }

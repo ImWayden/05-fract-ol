@@ -6,7 +6,7 @@
 /*   By: wayden <wayden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:22:36 by wayden            #+#    #+#             */
-/*   Updated: 2023/03/19 11:00:15 by wayden           ###   ########.fr       */
+/*   Updated: 2023/08/03 23:24:48 by wayden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ t_dir* get_dir(int is_initialized)
         dir.iter_max = 50;
         dir.palette = 0;
         dir.psy = 0;
+        dir.lock = 0;
+        dir.reset = 0;
+        dir.zooming = 0;
     }
     return &dir;
 }

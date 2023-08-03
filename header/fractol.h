@@ -6,7 +6,7 @@
 /*   By: wayden <wayden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:27:34 by wayden            #+#    #+#             */
-/*   Updated: 2023/03/19 10:32:06 by wayden           ###   ########.fr       */
+/*   Updated: 2023/08/03 23:27:34 by wayden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ typedef struct s_dir
     int    fractal;
     int     palette;
     int     psy;
+    int     lock;
+    int     reset;
+    int     zooming;
 }   t_dir;
 
 t_dir* get_dir(int is_initialized);
@@ -132,13 +135,18 @@ t_img *get_img(int is_initialized);
 
 int get_color(double max_iter, double iter);
 void draw_set(t_complex *c, t_mlx *mlx, t_img *img,t_dir *dir);
-
+double scale(int x, int y, char letter);
 void init_hook(void);
 
 void reset(void);
-void zoom(void);
+void zoom(double facteur);
 
 int update_screen(void *param);
 int	destroy_app(t_mlx *mlx);
+
+void swap_color(void);
+void check_reset(t_dir *dir);
+void check_zooming(t_dir *dir);
+void lock_mouse();
 
 #endif

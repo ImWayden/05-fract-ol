@@ -6,7 +6,7 @@
 /*   By: wayden <wayden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 23:10:23 by wayden            #+#    #+#             */
-/*   Updated: 2023/03/19 10:31:56 by wayden           ###   ########.fr       */
+/*   Updated: 2023/08/03 23:30:35 by wayden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,18 @@
 int update_screen(void *param)
 {
     t_dir *dir;
-    
+    int x;
+    int y;
+    mlx_mouse_get_pos(get_mlx(1)->mlx_ptr,get_mlx(1)->win_ptr,&x,&y);
     (void)param;
     dir = get_dir(1);
-    if(dir->palette >= 666)
+    swap_color();
+    check_reset(dir);
+    check_zooming(dir);
+    if(!dir->lock)
     {
-        dir->palette++;
-        if(dir->palette == 672)
-            dir->palette = 666;            
+        get_complex(1)->i = scale(x,0,'x');
+        get_complex(1)->r = scale(0,y,'y');
     }
     draw_set(get_complex(1), get_mlx(1), get_img(1),dir);
     return(0);
@@ -40,13 +44,16 @@ int	destroy_app(t_mlx *mlx)
 
 static int mouse_manager(int keycode, void *param)
 {
+   
     (void)param;
+    t_dir *dir;
+    dir = get_dir(1);
     if (keycode == 3)
-        while(get_dir(1)->zoom < 1000000)
-            (zoom(),1) && (update_screen(NULL),1);
-    (keycode == 4) && (zoom(),1);
-    if (keycode == 5 && get_dir(1)->zoom >= 1.00)
-        get_dir(1)->zoom *= 0.95; 
+        dir->zooming = 1;
+    (keycode == 4) && (zoom(1.05),1);
+    if (keycode == 5 && dir->zoom >= 1.00)
+        zoom(0.95);
+
     return(0);
 }
 
@@ -74,6 +81,7 @@ static int keyboard_manager(int keycode, void *param)
     (keycode == XK_p) && get_dir(1)->palette < 12 && (get_dir(1)->palette++,1);
     (keycode == XK_m) && get_dir(1)->palette > 0 && get_dir(1)->palette <= 12 
     && (get_dir(1)->palette--,1);
+    (keycode == XK_l) && (lock_mouse(),1);
     return(0);
 }
 

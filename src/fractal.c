@@ -6,17 +6,20 @@
 /*   By: wayden <wayden@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/18 12:28:55 by wayden            #+#    #+#             */
-/*   Updated: 2023/03/19 00:08:18 by wayden           ###   ########.fr       */
+/*   Updated: 2023/08/03 23:28:19 by wayden           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../header/fractol.h"
 
-static double scale(int x, int y, char letter)
+
+//convertie les coordonées d'un pixel de l'image en coordonnée d'un pixel du plan complex
+
+double scale(int x, int y, char letter)
 {
     double c;
     double d;
-
+ 
     c = -2;
     d = 2;
     if(letter == 'x')
